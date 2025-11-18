@@ -1,0 +1,84 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "GatewayServiceApplication",
+      "request": "launch",
+      "mainClass": "com.pepets.spa.gateway_service.GatewayServiceApplication",
+      "projectName": "gateway-service"
+    },
+    {
+      "type": "java",
+      "name": "RegistroUsuarioServiceApplication",
+      "request": "launch",
+      "mainClass": "com.pepets.spa.registro_usuario_service.RegistroUsuarioServiceApplication",
+      "projectName": "registro-usuario-service",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57637 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=registro-usuario-service"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-EurekaServerApplication<eureka-server>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pepets.spa.eureka_server.EurekaServerApplication",
+      "projectName": "eureka-server",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63660 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=eureka-server"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-AuthServiceApplication<auth-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pepets.spa.auth_service.AuthServiceApplication",
+      "projectName": "auth-service",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=65390 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=auth-service"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-CitaServiceApplication<cita-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pepets.spa.cita_service.CitaServiceApplication",
+      "projectName": "cita-service",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=61135 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=cita-service"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ClienteServiceApplication<cliente-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pepets.spa.cliente_service.ClienteServiceApplication",
+      "projectName": "cliente-service",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62836 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=cliente-service"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MascotaServiceApplication<mascota-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pepets.spa.mascota_service.MascotaServiceApplication",
+      "projectName": "mascota-service",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57627 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=mascota-service"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ServiciosServiceApplication<servicios-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pepets.spa.servicios_service.ServiciosServiceApplication",
+      "projectName": "servicios-service",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
