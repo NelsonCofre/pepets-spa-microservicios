@@ -1,15 +1,16 @@
-package com.pepets.spa.cliente_service.model;
+package com.pepets.spa.servicios_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "servicios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cliente {
+public class Servicio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,13 +18,9 @@ public class Cliente {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Column(nullable = false)
+    private Double precio;
 
     @Column(nullable = false)
-    private String telefono;
-
-    @Column(nullable = false)
-    private String direccion;
-
+    private String descripcion;
 }

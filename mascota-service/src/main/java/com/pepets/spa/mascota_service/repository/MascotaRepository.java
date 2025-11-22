@@ -1,5 +1,12 @@
 package com.pepets.spa.mascota_service.repository;
 
-public class MascotaRepository {
-    
+import com.pepets.spa.mascota_service.model.Mascota;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface MascotaRepository extends JpaRepository<Mascota, Long> {
+    List<Mascota> findByIdCliente(Long idCliente);
 }

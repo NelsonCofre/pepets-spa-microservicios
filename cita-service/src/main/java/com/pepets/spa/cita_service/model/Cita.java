@@ -1,56 +1,43 @@
 package com.pepets.spa.cita_service.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.FutureOrPresent;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "citas")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Cita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** Fecha de la cita (debe ser hoy o futura) */
-    @NotNull
-    @FutureOrPresent
+    @Column(nullable = false)
+    private Long clienteId;
+
+    @Column(nullable = false)
+    private Long mascotaId;
+
+    @Column(nullable = false)
+    private Long servicioId;
+
     @Column(nullable = false)
     private LocalDate fecha;
 
-    /** Hora de la cita (no puede ser nula) */
-    @NotNull
     @Column(nullable = false)
     private LocalTime hora;
 
-    /** Cliente asociado a la cita */
-    @NotNull
     @Column(nullable = false)
-    private Long idCliente;
+    private String estado; // PENDIENTE, CONFIRMADA, FINALIZADA, CANCELADA
 
-    /** Mascota asociada a la cita */
-    @NotNull
-    @Column(nullable = false)
-    private Long idMascota;
+    @Column(length = 1000)
+    private String notas;
 
-    /** Estado de la cita (por defecto: PENDIENTE) */
-    @Column(nullable = false)
-    private String estado;
-
-    /** Asigna estado por defecto si no se envía */
-    @PrePersist
-    public void prePersist() {
-        if (estado == null) {
-            estado = "PENDIENTE";
-        }
-    }
+    private LocalDateTime fechaCreacion;
 }
