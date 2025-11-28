@@ -1,15 +1,15 @@
-package com.pepets.spa.cliente_service.model;
+package com.pepets.spa.cita_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "clientes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cliente {
+@Table(name = "servicios")
+public class Servicio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,11 @@ public class Cliente {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    private String descripcion;
 
-    @Column(nullable = false)
-    private String password; // SIN cifrar
+    private Double precio;
+
+    private Integer duracionMin;
+
+    private String imagenUrl; // opcional
 }

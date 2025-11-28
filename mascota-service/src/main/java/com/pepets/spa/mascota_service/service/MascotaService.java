@@ -5,16 +5,16 @@ import com.pepets.spa.mascota_service.dto.MascotaDTO;
 import java.util.List;
 
 public interface MascotaService {
+    MascotaDTO crearMascota(MascotaDTO dto);
 
-    MascotaDTO crearMascota(MascotaDTO mascotaDTO);
+    List<MascotaDTO> obtenerMascotasPorCliente(Long clienteId);
 
     MascotaDTO obtenerPorId(Long id);
 
-    List<MascotaDTO> listarPorCliente(Long idCliente);
-
-    List<MascotaDTO> listarMascotas();
-
-    MascotaDTO actualizarMascota(Long id, MascotaDTO mascotaDTO);
+    MascotaDTO actualizarMascota(Long id, MascotaDTO dto);
 
     void eliminarMascota(Long id);
+
+    List<MascotaDTO> obtenerTodas();
+
 }

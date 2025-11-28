@@ -1,9 +1,8 @@
 package com.pepets.spa.cliente_service.repository;
 
+import com.pepets.spa.cliente_service.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.pepets.spa.cliente_service.model.Cliente;
 
 import java.util.Optional;
 

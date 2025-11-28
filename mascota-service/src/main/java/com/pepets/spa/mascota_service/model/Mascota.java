@@ -16,17 +16,14 @@ public class Mascota {
     private Long id;
 
     @Column(nullable = false)
+    private Long clienteId; // Relación con cliente-service
+
+    @Column(nullable = false)
     private String nombre;
 
     @Column(nullable = false)
-    private String especie; // perro, gato, etc.
+    private String tipo; // perro, gato, etc.
 
     @Column(nullable = false)
-    private String raza;
-
-    @Column(nullable = false)
-    private Integer edad;
-
-    @Column(nullable = false)
-    private Long idCliente; // Relación por ID (no por tabla)
+    private Integer edad; // opcional, pero útil
 }

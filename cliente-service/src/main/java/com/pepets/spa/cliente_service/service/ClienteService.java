@@ -1,20 +1,14 @@
 package com.pepets.spa.cliente_service.service;
 
+import org.springframework.stereotype.Service;
+
 import com.pepets.spa.cliente_service.dto.ClienteDTO;
 
-import java.util.List;
-
+@Service
 public interface ClienteService {
+    ClienteDTO registrar(ClienteDTO dto);
 
-    ClienteDTO crearCliente(ClienteDTO clienteDTO);
+    ClienteDTO login(String email, String password);
 
-    ClienteDTO obtenerClientePorId(Long id);
-
-    ClienteDTO obtenerClientePorEmail(String email);
-
-    List<ClienteDTO> listarClientes();
-
-    ClienteDTO actualizarCliente(Long id, ClienteDTO clienteDTO);
-
-    void eliminarCliente(Long id);
+    ClienteDTO obtener(Long id);
 }

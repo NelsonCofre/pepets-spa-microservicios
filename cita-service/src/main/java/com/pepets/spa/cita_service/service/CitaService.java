@@ -1,27 +1,19 @@
 package com.pepets.spa.cita_service.service;
 
-import com.pepets.spa.cita_service.dto.CitaDTO;
+import com.pepets.spa.cita_service.model.Cita;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface CitaService {
+    Cita crear(Cita c);
 
-    CitaDTO crearCita(CitaDTO dto);
+    Cita obtener(Long id);
 
-    CitaDTO obtenerPorId(Long id);
+    List<Cita> listar();
 
-    List<CitaDTO> listarPorCliente(Long clienteId);
+    List<Cita> listarPorCliente(Long clienteId);
 
-    List<CitaDTO> listarPorMascota(Long mascotaId);
+    Cita actualizar(Long id, Cita c);
 
-    List<CitaDTO> listarPorFecha(LocalDate fecha);
-
-    List<CitaDTO> listarTodas();
-
-    CitaDTO actualizarCita(Long id, CitaDTO dto);
-
-    void eliminarCita(Long id);
-
-    CitaDTO cambiarEstado(Long id, String nuevoEstado);
+    void eliminar(Long id);
 }

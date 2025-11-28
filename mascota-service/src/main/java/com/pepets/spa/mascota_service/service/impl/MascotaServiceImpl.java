@@ -1,11 +1,9 @@
 package com.pepets.spa.mascota_service.service.impl;
 
-import com.pepets.spa.mascota_service.client.ClienteClient;
 import com.pepets.spa.mascota_service.dto.MascotaDTO;
 import com.pepets.spa.mascota_service.model.Mascota;
 import com.pepets.spa.mascota_service.repository.MascotaRepository;
 import com.pepets.spa.mascota_service.service.MascotaService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,83 +14,93 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MascotaServiceImpl implements MascotaService {
 
-    private final MascotaRepository mascotaRepository;
-    private final ClienteClient clienteClient;
+        private final MascotaRepository mascotaRepo;
 
-    private MascotaDTO mapToDTO(Mascota m) {
-        return MascotaDTO.builder()
-                .id(m.getId())
-                .nombre(m.getNombre())
-                .especie(m.getEspecie())
-                .raza(m.getRaza())
-                .edad(m.getEdad())
-                .idCliente(m.getIdCliente())
-                .build();
-    }
+        @Override
+        public MascotaDTO crearMascota(MascotaDTO dto) {
+                Mascota m = Mascota.builder()
+                                .nombre(dto.getNombre())
+                                .tipo(dto.getTipo())
+                                .edad(dto.getEdad())
+                                .clienteId(dto.getClienteId())
+                                .build();
 
-    private Mascota mapToEntity(MascotaDTO dto) {
-        return Mascota.builder()
-                .nombre(dto.getNombre())
-                .especie(dto.getEspecie())
-                .raza(dto.getRaza())
-                .edad(dto.getEdad())
-                .idCliente(dto.getIdCliente())
-                .build();
-    }
+                mascotaRepo.save(m);
 
-    @Override
-    public MascotaDTO crearMascota(MascotaDTO mascotaDTO) {
-
-        // Validar existencia del cliente
-        clienteClient.obtenerClientePorId(mascotaDTO.getIdCliente());
-
-        Mascota mascota = mapToEntity(mascotaDTO);
-        Mascota guardada = mascotaRepository.save(mascota);
-        return mapToDTO(guardada);
-    }
-
-    @Override
-    public MascotaDTO obtenerPorId(Long id) {
-        Mascota m = mascotaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
-        return mapToDTO(m);
-    }
-
-    @Override
-    public List<MascotaDTO> listarPorCliente(Long idCliente) {
-        return mascotaRepository.findByIdCliente(idCliente)
-                .stream().map(this::mapToDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<MascotaDTO> listarMascotas() {
-        return mascotaRepository.findAll()
-                .stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public MascotaDTO actualizarMascota(Long id, MascotaDTO dto) {
-        Mascota m = mascotaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
-
-        m.setNombre(dto.getNombre());
-        m.setEspecie(dto.getEspecie());
-        m.setRaza(dto.getRaza());
-        m.setEdad(dto.getEdad());
-        m.setIdCliente(dto.getIdCliente());
-
-        Mascota actualizada = mascotaRepository.save(m);
-        return mapToDTO(actualizada);
-    }
-
-    @Override
-    public void eliminarMascota(Long id) {
-        if (!mascotaRepository.existsById(id)) {
-            throw new RuntimeException("Mascota no encontrada");
+                dto.setId(m.getId());
+                return dto;
         }
-        mascotaRepository.deleteById(id);
-    }
+
+        @Override
+        public List<MascotaDTO> obtenerMascotasPorCliente(Long clienteId) {
+                return mascotaRepo.findByClienteId(clienteId)
+                                .stream()
+                                .map(m -> MascotaDTO.builder()
+                                                .id(m.getId())
+                                                .clienteId(m.getClienteId())
+                                                .nombre(m.getNombre())
+                                                .tipo(m.getTipo())
+                                                .edad(m.getEdad())
+                                                .build())
+                                .collect(Collectors.toList());
+        }
+
+        @Override
+        public MascotaDTO obtenerPorId(Long id) {
+                Mascota m = mascotaRepo.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
+
+                return MascotaDTO.builder()
+                                .id(m.getId())
+                                .clienteId(m.getClienteId())
+                                .nombre(m.getNombre())
+                                .tipo(m.getTipo())
+                                .edad(m.getEdad())
+                                .build();
+        }
+
+        @Override
+        public MascotaDTO actualizarMascota(Long id, MascotaDTO dto) {
+                Mascota m = mascotaRepo.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
+
+                // Actualizamos los campos
+                m.setNombre(dto.getNombre());
+                m.setTipo(dto.getTipo());
+                m.setEdad(dto.getEdad());
+
+                mascotaRepo.save(m);
+
+                // Retornamos DTO actualizado
+                return MascotaDTO.builder()
+                                .id(m.getId())
+                                .clienteId(m.getClienteId())
+                                .nombre(m.getNombre())
+                                .tipo(m.getTipo())
+                                .edad(m.getEdad())
+                                .build();
+        }
+
+        @Override
+        public void eliminarMascota(Long id) {
+                if (!mascotaRepo.existsById(id)) {
+                        throw new RuntimeException("Mascota no encontrada");
+                }
+                mascotaRepo.deleteById(id);
+        }
+
+        @Override
+        public List<MascotaDTO> obtenerTodas() {
+                return mascotaRepo.findAll()
+                                .stream()
+                                .map(m -> MascotaDTO.builder()
+                                                .id(m.getId())
+                                                .clienteId(m.getClienteId())
+                                                .nombre(m.getNombre())
+                                                .tipo(m.getTipo())
+                                                .edad(m.getEdad())
+                                                .build())
+                                .collect(Collectors.toList());
+        }
+
 }
