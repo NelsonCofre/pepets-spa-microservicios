@@ -30,4 +30,9 @@ public class ClienteController {
         return clienteService.obtener(id);
     }
 
+    @PutMapping("/{id}")
+    public ClienteDTO actualizar(@PathVariable Long id, @RequestBody ClienteDTO dto) {
+        return clienteService.actualizar(id, dto);
+    }
+
 }

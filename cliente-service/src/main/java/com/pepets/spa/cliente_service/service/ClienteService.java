@@ -11,4 +11,7 @@ public interface ClienteService {
     ClienteDTO login(String email, String password);
 
     ClienteDTO obtener(Long id);
+
+    ClienteDTO actualizar(Long id, ClienteDTO dto);
+
 }

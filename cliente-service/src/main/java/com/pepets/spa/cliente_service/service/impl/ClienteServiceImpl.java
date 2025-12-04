@@ -51,4 +51,20 @@ public class ClienteServiceImpl implements ClienteService {
 
         return new ClienteDTO(c.getId(), c.getNombre(), c.getEmail(), c.getPassword());
     }
+
+    @Override
+public ClienteDTO actualizar(Long id, ClienteDTO dto) {
+
+    Cliente c = repo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Cliente no existe"));
+
+    // Solo actualiza nombre y contraseña
+    c.setNombre(dto.getNombre());
+    c.setPassword(dto.getPassword());
+
+    repo.save(c);
+
+    return new ClienteDTO(c.getId(), c.getNombre(), c.getEmail(), c.getPassword());
+}
+
 }

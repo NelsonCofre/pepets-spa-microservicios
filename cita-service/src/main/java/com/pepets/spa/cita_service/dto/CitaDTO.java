@@ -2,6 +2,7 @@ package com.pepets.spa.cita_service.dto;
 
 import lombok.*;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,8 +14,10 @@ public class CitaDTO {
     private Long clienteId;
 
     private Long mascotaId;
+    private String mascotaNombre;   // <- NUEVO
 
     private Long servicioId;
+    private String servicioNombre;  // <- NUEVO
 
     private String fecha;
 
@@ -22,3 +25,4 @@ public class CitaDTO {
 
     private String estado;
 }
+
